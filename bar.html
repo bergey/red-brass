@@ -1,16 +1,30 @@
 <!-- hand-written SVG bar chart -->
 <html>
-    <svg height="100" width="100" transform="matrix(1,0, 0,-1, 0, 0)" >
-        <rect x="0"  y="0"  width="100"  height="100"  fill="none"  stroke="red" />
-        <rect x="1"  y="0"  width="8"  height="81" />
-        <rect x="11"  y="0"  width="8"  height="41" />
-        <rect x="21"  y="0"  width="8"  height="75" />
-        <rect x="31"  y="0"  width="8"  height="56" />
-        <rect x="41"  y="0"  width="8"  height="58" />
-        <rect x="51"  y="0"  width="8"  height="3" />
-        <rect x="61"  y="0"  width="8"  height="41" />
-        <rect x="71"  y="0"  width="8"  height="92" />
-        <rect x="81"  y="0"  width="8"  height="58" />
-        <rect x="91"  y="0"  width="8"  height="27" />
+    <svg height="500" width="500" transform="matrix(1,0, 0,-1, 0, 0)" >
+        <!-- data pane edges -->
+        <line x1="49"  y1="50"  x2="450"  y2="50"  stroke="black" stroke-width="0.5" />
+        <line x1="50"  y1="49"  x2="50"  y2="450"  stroke="black" />
+        <g transform="translate(50,50) scale(4)">                     <!--data pane-->
+            <rect x="1"  y="0"  width="8"  height="81" />
+            <rect x="11"  y="0"  width="8"  height="41" />
+            <rect x="21"  y="0"  width="8"  height="75" />
+            <rect x="31"  y="0"  width="8"  height="56" />
+            <rect x="41"  y="0"  width="8"  height="58" />
+            <rect x="51"  y="0"  width="8"  height="3" />
+            <rect x="61"  y="0"  width="8"  height="41" />
+            <rect x="71"  y="0"  width="8"  height="92" />
+            <rect x="81"  y="0"  width="8"  height="58" />
+            <rect x="91"  y="0"  width="8"  height="27" />
+        </g>
+        <g transform="matrix(1,0, 0,-1, 50,50)" style="text-anchor: middle; fill: blue;">
+            <line x1="20"  y1="0" x2="20"  y2="5" stroke="black"  />
+            <text x="20" y="20" >A</text>
+            <line x1="60"  y1="0" x2="60"  y2="5" stroke="black"  />
+            <text x="60" y="20" >B</text>
+            <line x1="100"  y1="0" x2="100"  y2="5" stroke="black"  />
+            <text x="100" y="20" >C</text>
+            <line x1="140"  y1="0" x2="140"  y2="5" stroke="black"  />
+            <text x="140" y="20" >D</text>
+        </g>
     </svg>
 </html>
