@@ -1,30 +1,44 @@
 <!-- hand-written SVG bar chart -->
 <html>
-    <svg height="500" width="500" transform="matrix(1,0, 0,-1, 0, 0)" >
+    <svg height="500" width="500" transform="matrix(1,0, 0,-1, 0, 0)" style="border: 1px solid cyan;">
         <!-- data pane edges -->
         <line x1="49"  y1="50"  x2="450"  y2="50"  stroke="black" stroke-width="0.5" />
         <line x1="50"  y1="49"  x2="50"  y2="450"  stroke="black" />
-        <g transform="translate(50,50) scale(4)">                     <!--data pane-->
-            <rect x="1"  y="0"  width="8"  height="81" />
-            <rect x="11"  y="0"  width="8"  height="41" />
-            <rect x="21"  y="0"  width="8"  height="75" />
-            <rect x="31"  y="0"  width="8"  height="56" />
-            <rect x="41"  y="0"  width="8"  height="58" />
-            <rect x="51"  y="0"  width="8"  height="3" />
-            <rect x="61"  y="0"  width="8"  height="41" />
-            <rect x="71"  y="0"  width="8"  height="92" />
-            <rect x="81"  y="0"  width="8"  height="58" />
-            <rect x="91"  y="0"  width="8"  height="27" />
+        <g transform="translate(50,50) scale(4) translate(4.75,0)" style="fill: #666;">                     <!--data pane-->
+            <rect x="0"  y="0"  width="4.75"  height="81" />
+            <rect x="9.5"  y="0"  width="4.75"  height="41" />
+            <rect x="19"  y="0"  width="4.75"  height="75" />
+            <rect x="28.5"  y="0"  width="4.75"  height="56" />
+            <rect x="38"  y="0"  width="4.75"  height="58" />
+            <rect x="47.5"  y="0"  width="4.75"  height="3" />
+            <rect x="57"  y="0"  width="4.75"  height="41" />
+            <rect x="66.5"  y="0"  width="4.75"  height="92" />
+            <rect x="76"  y="0"  width="4.75"  height="58" />
+            <rect x="85.5"  y="0"  width="4.75"  height="27" />
         </g>
-        <g transform="matrix(1,0, 0,-1, 50,50)" style="text-anchor: middle; fill: blue;">
-            <line x1="20"  y1="0" x2="20"  y2="5" stroke="black"  />
-            <text x="20" y="20" >A</text>
-            <line x1="60"  y1="0" x2="60"  y2="5" stroke="black"  />
-            <text x="60" y="20" >B</text>
-            <line x1="100"  y1="0" x2="100"  y2="5" stroke="black"  />
-            <text x="100" y="20" >C</text>
-            <line x1="140"  y1="0" x2="140"  y2="5" stroke="black"  />
-            <text x="140" y="20" >D</text>
+        <g transform="matrix(1,0, 0,-1, 78.5,50)" style="text-anchor: middle;">
+            <line x1="0"  y1="0" x2="0"  y2="5" stroke="black"  />
+            <text x="0" y="20" >A</text>
+            <line x1="38"  y1="0" x2="38"  y2="5" stroke="black"  />
+            <text x="38" y="20" >B</text>
+            <line x1="76"  y1="0" x2="76"  y2="5" stroke="black"  />
+            <text x="76" y="20" >C</text>
+            <line x1="114"  y1="0" x2="114"  y2="5" stroke="black"  />
+            <text x="114" y="20" >D</text>
+            <line x1="152"  y1="0" x2="152"  y2="5" stroke="black"  />
+            <text x="152" y="20" >E</text>
+            <line x1="190"  y1="0" x2="190"  y2="5" stroke="black"  />
+            <text x="190" y="20" >F</text>
+            <line x1="228"  y1="0" x2="228"  y2="5" stroke="black"  />
+            <text x="228" y="20" >G</text>
+            <line x1="266"  y1="0" x2="266"  y2="5" stroke="black"  />
+            <text x="266" y="20" >H</text>
+            <line x1="304"  y1="0" x2="304"  y2="5" stroke="black"  />
+            <text x="304" y="20" >I</text>
+            <line x1="342"  y1="0" x2="342"  y2="5" stroke="black"  />
+            <text x="342" y="20" >J</text>
+        </g>
+        <g transform="matrix(-1,0, 0,1, 50,50)" style="text-anchor: end;" >
         </g>
     </svg>
 </html>
