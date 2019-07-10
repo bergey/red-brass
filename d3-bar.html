@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-array.v1.min.js"></script>
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-format.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <!-- <script src="https://d3js.org/d3-time.v1.min.js"></script>
+         <script src="https://d3js.org/d3-time-format.v2.min.js"></script> -->
+    <script src="https://d3js.org/d3-scale.v2.min.js"></script>
+    </head>
+    <body>
+        <svg id="bar" style="border: 1px solid cyan;" >
+        </svg>
+        <script>
+         data = [81, 41, 75, 56, 58, 3, 41, 92, 58, 27];
+
+         let OUTER = {width: 500, height: 500};
+         let BAR_WIDTH = 19;
+         let margin = { left: 50, bottom: 50, top: 50, right: 50};
+         let padding = { left: 28.5, bottom: 0, top: 0, right: 28.5 };
+
+         let x = d3.scaleLinear()
+                   .domain([0, data.length - 1])
+                   .range([margin.left + padding.left,
+                           OUTER.width - padding.right - margin.right]);
+
+         let y = d3.scaleLinear()
+                   .domain([0,100])
+                   .range([OUTER.height - margin.bottom - padding.bottom,
+                           margin.top + padding.top]);
+
+         let svg = d3.select("#bar")
+                     .attr("width", OUTER.width)
+                     .attr("height", OUTER.height);
+
+         let pane = svg.append("g")
+                       .attr("class", "data pane")
+                       .style("fill", "#666");
+
+         let bars = pane.selectAll("rect")
+                         .data(data);
+         bars.enter().append("rect")
+             .attr("y", y)
+             .attr("width", BAR_WIDTH)
+             .attr("x", function(d, i) { return x(i) - BAR_WIDTH/2 })
+             .attr("height", function (d) { return y(0) - y(d); });
+
+         <!-- x-axis baseline -->
+         svg.append("line")
+            .attr("x1", margin.left)
+            .attr("y1", OUTER.height - margin.bottom)
+            .attr("x2",OUTER.width - margin.right)
+            .attr("y2", OUTER.height - margin.bottom)
+            .attr("stroke", "black");
+         <!-- y axis baseline -->
+         svg.append("line")
+            .attr("x1", margin.left)
+            .attr("y1", OUTER.height - margin.bottom)
+            .attr("x2",margin.left)
+            .attr("y2", margin.top)
+            .attr("stroke", "black");
+
+         <!-- x-axis ticks -->
+         let x_ticks = svg.append("g")
+                          .classed("x axis tick", true)
+                          .style("text-anchor", "middle")
+         x_ticks.selectAll("line").data(data)
+                .enter().append("line")
+                .attr("x1", function(d, i) { return x(i); })
+                .attr("x2", function(d, i) { return x(i); })
+                .attr("y1", OUTER.height - margin.bottom)
+                .attr("y2", OUTER.height - margin.bottom + 5)
+                .attr("stroke", "black");
+         x_ticks.selectAll("text").data(data)
+                .enter().append("text")
+                .text(function(d, i) { return "ABCDEFGHIJ"[i]; })
+                .attr("x", function(d, i) { return x(i); })
+                .attr("y", OUTER.height - margin.bottom + 10)
+                .attr("alignment-baseline", "hanging");
+
+         <!-- x-axis ticks -->
+         let y_ticks = svg.append("g")
+                          .classed("y axis tick", true)
+                          .style("text-anchor", "end");
+         y_ticks.selectAll("line").data([0,10,20,30,40,50,60,70,80,90,100])
+                .enter().append("line")
+                .attr("y1", y)
+                .attr("y2", y)
+                .attr("x1", margin.left)
+                .attr("x2", margin.left - 5)
+                .attr("stroke", "black");
+         y_ticks.selectAll("text").data([0, 30, 60, 90])
+                .enter().append("text")
+                .text(function(d) { return d; })
+                .attr("x", margin.left - 10)
+                .attr("y", y)
+                .attr("alignment-baseline", "middle");
+
+
+        </script>
+    </body>
+</html>
