@@ -16,9 +16,10 @@ import Common.Route
 import Obelisk.Generated.Static
 
 import Data.Foldable
+import Data.List (elemIndex)
 
-readings :: [(Int, Double)]
-readings = zip [0..] [81, 41, 75, 56, 58, 3, 41, 92, 58, 27]
+readings :: [(T.Text, Double)]
+readings = zip (map T.singleton ['A'..]) [81, 41, 75, 56, 58, 3, 41, 92, 58, 27]
 
 frontend :: Frontend (R FrontendRoute)
 frontend = Frontend
@@ -28,7 +29,6 @@ frontend = Frontend
         barChart
   }
 
-
 barChart :: (DomBuilder t m, PostBuild t m) => m ()
 barChart = elAttr "svg"
   ( "height" =: "500" <> "width" =: "500" <> "style" =: "border: 1px solid cyan; display: block" ) $ do
@@ -36,9 +36,8 @@ barChart = elAttr "svg"
     -- x-axis
     line (margin_left - 1, outer_height - margin_bottom) (outer_width - margin_right, outer_height - margin_bottom) "black"
     for_ readings $ \(i, _d) -> line (x i, outer_height - margin_bottom) (x i, outer_height - margin_bottom + 5) "black"
-    -- TODO labels belong in `readings`
-    for_ (zip [0..] "ABCDEFGHIJ") $ \(i, label) ->
-        textBottom (x i, outer_height - margin_bottom + 10) (T.singleton label)
+    for_ (map fst readings) $ \ label ->
+        textBottom (x label, outer_height - margin_bottom + 10) label
     -- y-axis
     line (margin_left, outer_height - margin_bottom + 1) (margin_left, margin_top) "black"
     for_ [0, 10..100] $ \d -> line (margin_left, y d) (margin_left - 5, y d) "black"
@@ -58,8 +57,12 @@ padding_bottom = 0
 padding_top = 0
 
 -- scaling functions, like D3 (although harder to inspect)
-x :: Int -> Double
-x i = range_min + m * fromIntegral i where
+x :: T.Text -> Double
+x label = range_min + m * fromIntegral i where
+    knownLabels = map fst readings
+    i = case elemIndex label knownLabels of
+        Just i -> i
+        Nothing -> error ( "tried to compute x-position of unknown label: " <> T.unpack label <> "\n    known labels are: " <> show knownLabels )
     range_min = margin_left + padding_left
     range_max = outer_width - margin_right - padding_right
     domain_width = length readings - 1
