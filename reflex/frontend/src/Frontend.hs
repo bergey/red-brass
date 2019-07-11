@@ -15,7 +15,10 @@ import Obelisk.Generated.Static
 
 frontend :: Frontend (R FrontendRoute)
 frontend = Frontend
-  { _frontend_head = el "title" $ text "Obelisk Minimal Example"
-  , _frontend_body = do
-      text "Welcome to Obelisk!"
+    { _frontend_head = el "title" $ text "Obelisk Minimal Example"
+    , _frontend_body = do
+        text "Welcome to Obelisk!"
+        elAttr "svg"
+          ( "height" =: "500" <> "width" =: "500" <> "style" =: "border: 1px solid cyan; display: block" ) $ do
+            elAttr "line" ( "x1" =: "49" <> "y1" =: "50" <> "x2" =: "150" <> "y2" =: "50" <> "stroke" =: "black" ) blank
   }
