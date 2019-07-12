@@ -19,15 +19,16 @@ rect (x, y) width height attrs = elAttr "rect"
     ( "x" =: showT x <> "y" =: showT y <> "width" =: showT width <> "height" =: showT height  <> attrs)
     blank
 
+svgText :: DomBuilder t m => (Double, Double) -> T.Text -> M.Map T.Text T.Text -> m ()
+svgText (x, y) s attrs = elAttr "text" ( "x" =: showT x <> "y" =: showT y <> attrs ) (text s)
+
 textLeft :: DomBuilder t m => (Double, Double) -> T.Text -> m ()
-textLeft (x, y) s = elAttr "text"
-    ( "x" =: showT x <> "y" =: showT y <> "text-anchor" =: "end" <> "alignment-baseline" =: "middle" )
-    (text s)
+textLeft (x, y) s = svgText (x, y) s
+    ( "text-anchor" =: "end" <> "alignment-baseline" =: "middle" )
 
 textBottom :: DomBuilder t m => (Double, Double) -> T.Text -> m ()
-textBottom (x, y) s = elAttr "text"
-    ( "x" =: showT x <> "y" =: showT y <> "text-anchor" =: "middle" <> "alignment-baseline" =: "hanging" )
-    (text s)
+textBottom (x, y) s = svgText (x, y) s
+    ( "text-anchor" =: "middle" <> "alignment-baseline" =: "hanging" )
 
 circle :: DomBuilder t m => (Double, Double) -> Double -> M.Map T.Text T.Text -> m ()
 circle (x, y) r attrs = elAttr "circle"

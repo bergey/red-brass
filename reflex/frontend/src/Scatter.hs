@@ -22,6 +22,7 @@ scatterPlot = elAttr "svg"
         let bigTick = floor x `mod` 20 == 0
         line (xScale x, 0) (xScale x, if bigTick then 7.5 else 5) "black"
         when bigTick $ textBottom (xScale x, 15) (showT x)
+      textBottom (xScale 50, 40) "Aardvarks"
     -- y-axis
     elAttr "g" ( "transform" =: ("translate(" <> showT margin_left <> ", 0)") ) $ do
       line (0, outer_height - margin_bottom) (0, margin_top) "black"
@@ -29,6 +30,7 @@ scatterPlot = elAttr "svg"
         let bigTick = floor y `mod` 20 == 0
         line (0, yScale y) (if bigTick then -7.5 else -5, yScale y) "black"
         when bigTick $ textLeft (-12, yScale y) (showT y)
+      svgText (-50, yScale 50) "Badgers" ( "transform" =: ("rotate(-90, -50, " <> showT (yScale 50) <> ")")  <> "text-anchor" =: "middle" )
 
 outer_width, outer_height, margin_left, margin_bottom, margin_top, margin_right, padding_left, padding_right, padding_bottom, padding_top :: Double
 outer_width = 500
