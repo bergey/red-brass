@@ -11,7 +11,7 @@ import Data.Foldable
 readings :: [(Double, Double)]
 readings = [ (81, 98),  (41, 13),  (75, 38),  (56, 28),  (58, 30),  ( 3, 75),  (41, 45),  (92, 99),  (58, 0 ),  (27, 69) ]
 
-scatterPlot :: DomBuilder t m => m ()
+scatterPlot :: (DomBuilder t m, PostBuild t m) => m ()
 scatterPlot = elAttr "svg"
   ( "height" =: "500" <> "width" =: "500" <> "style" =: "border: 1px solid cyan; display: block" ) $ do
     for_ readings $ \(x, y) -> circle (xScale x, yScale y) 3 mempty

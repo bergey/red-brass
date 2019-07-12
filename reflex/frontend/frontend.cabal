@@ -11,9 +11,19 @@ library
                , obelisk-route
                , reflex-dom
                , obelisk-generated-static
+               , bytestring
+               , cassava
+               , containers
+               , lens
                , text
+               , vector
   exposed-modules:
-    Frontend
+                  Frontend
+  other-modules:
+                BarChart
+              , ChartUtil
+              , Scatter
+              , SchoolDistricts
   ghc-options: -Wall
 
 executable frontend

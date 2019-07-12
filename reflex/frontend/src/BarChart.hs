@@ -13,7 +13,7 @@ import qualified Data.Text as T
 readings :: [(T.Text, Double)]
 readings = zip (map T.singleton ['A'..]) [81, 41, 75, 56, 58, 3, 41, 92, 58, 27]
 
-barChart :: DomBuilder t m => m ()
+barChart :: (DomBuilder t m, PostBuild t m) => m ()
 barChart = elAttr "svg"
   ( "height" =: "500" <> "width" =: "500" <> "style" =: "border: 1px solid cyan; display: block" ) $ do
     for_ readings $ \(i, d) -> rect (x i - bar_width / 2, y d) bar_width (y 0 - y d) ( "fill" =: "#666" )
