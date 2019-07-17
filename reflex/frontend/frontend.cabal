@@ -19,11 +19,11 @@ library
                , vector
   exposed-modules:
                   Frontend
+              , SchoolDistricts
   other-modules:
                 BarChart
               , ChartUtil
               , Scatter
-              , SchoolDistricts
   ghc-options: -Wall
 
 executable frontend

@@ -29,6 +29,6 @@ import Data.List (elemIndex, sortOn)
 frontend :: Frontend (R FrontendRoute)
 frontend = Frontend
     { _frontend_head = el "title" $ text "Reflex Chart Examples"
-    , _frontend_body = do
-        barWidthChart . join =<< prerender (pure (pure mempty)) fetchCsv
+    , _frontend_body = el "p" $ text "Written in Reflex"
+        -- barWidthChart . join =<< prerender (pure (pure mempty)) fetchCsv
   }
