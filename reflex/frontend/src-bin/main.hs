@@ -1,10 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 import SchoolDistricts (barWidthChart, fetchCsv)
 
-import Frontend
-import Common.Route
-import Obelisk.Frontend
-import Obelisk.Route.Frontend
+-- import Frontend
 import Reflex.Dom
 
 main :: IO ()
